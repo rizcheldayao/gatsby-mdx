@@ -16,10 +16,39 @@ modules.exports = {
   plugins: [
     {
       resolve: `gatsby-mdx`,
-      options: { plugins: [`gatsby-plugin-mdx-prismjs`] }
+      options: {
+        plugins: [`gatsby-plugin-mdx-prismjs`]
+      }
     }
   ]
 };
 ```
 
 ## Options
+
+`gatsby-plugin-mdx-prismjs` accepts all of the options that
+`gatsby-remark-prism` does to make it easy to switch.
+
+```javascript
+modules.exports = {
+  plugins: [
+    {
+      resolve: `gatsby-mdx`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-plugin-mdx-prismjs`,
+            options: {
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              aliases: {},
+              showLineNumbers: false,
+              noInlineHighlight: false
+            }
+          }
+        ]
+      }
+    }
+  ]
+};
+```

@@ -7,7 +7,9 @@ module.exports = {
   plugins: [
     {
       resolve: `gatsby-mdx`,
-      options: { plugins: [`gatsby-plugin-mdx-prismjs`] },
+      options: {
+        mdxPlugins: [`gatsby-plugin-mdx-prismjs`],
+      },
     },
     `gatsby-plugin-react-helmet`,
     {
