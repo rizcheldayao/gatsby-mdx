@@ -29,15 +29,16 @@ import { plugins as mdxPlugins } from "./loaders/mdx-components";
 
 const componentsAndGuards = {};
 
-const componentFromGuards = arr => props => {
-  const { Component } = arr.find(
-    ({ guard, Component }) => (guard ? guard(props) : true)
-  );
-  return <Component {...props} />;
-};
+const componentFromGuards = arr =>
+  function GatsbyMDXComponentFinder(props) {
+    const { Component } = arr.find(
+      ({ guard }) => (guard ? guard(props) : true)
+    );
+    return <Component {...props} />;
+  };
 
-const WrapRootElement = ({ element }, pluginOptions) => {
-  mdxPlugins.forEach(({ guards, components }) => {
+const WrapRootElement = ({ element }) => {
+  mdxPlugins.forEach(({ guards = {}, components }) => {
     Object.entries(components).forEach(([componentName, Component]) => {
       if (componentsAndGuards[componentName]) {
         componentsAndGuards.push({ guard: guards[componentName], Component });
@@ -51,7 +52,9 @@ const WrapRootElement = ({ element }, pluginOptions) => {
 
   const components = Object.entries(componentsAndGuards)
     .map(([name, arr]) => ({
-      [name]: componentFromGuards(arr)
+      [name]: componentFromGuards(
+        arr.concat({ guard: undefined, Component: name })
+      )
     }))
     .reduce((acc, obj) => ({ ...acc, ...obj }), {});
 

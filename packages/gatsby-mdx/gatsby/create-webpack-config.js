@@ -55,13 +55,7 @@ module.exports = (
     },
     plugins: [
       plugins.define({
-        __DEVELOPMENT__: stage === `develop` || stage === `develop-html`,
-        __MDX_PLUGINS_IMPORTS__: options.mdxPlugins
-          .map((plugin, i) => (plugin.resolve ? plugin.resolve : plugin))
-          .join("\n"),
-        __MDX_PLUGINS__: JSON.stringify(
-          options.mdxPlugins.map((plugin, i) => [plugin, `MDXPlugin${i}`])
-        )
+        __DEVELOPMENT__: stage === `develop` || stage === `develop-html`
       })
     ]
   });

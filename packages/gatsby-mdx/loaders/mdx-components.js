@@ -1,5 +1,3 @@
-const path = require("path");
-const slash = require("slash");
 const loaderUtils = require("loader-utils");
 
 /**
@@ -15,7 +13,7 @@ const loaderUtils = require("loader-utils");
  * }
  * ```
  */
-module.exports = function(source) {
+module.exports = function() {
   const options = loaderUtils.getOptions(this);
   const pluginRequires =
     "[" +
