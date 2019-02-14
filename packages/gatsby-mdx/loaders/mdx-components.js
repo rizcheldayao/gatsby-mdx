@@ -16,7 +16,7 @@ const loaderUtils = require("loader-utils");
 module.exports = function() {
   const options = loaderUtils.getOptions(this);
   const pluginRequires = !options.plugins
-    ? []
+    ? "[]"
     : "[" +
       options.plugins
         .map(plugin => `require("${plugin.resolve ? plugin.resolve : plugin}")`)
