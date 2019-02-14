@@ -5,6 +5,7 @@
   "author": "Chris Biscardi <chris@christopherbiscardi.com> (@chrisbiscardi)",
   "license": "MIT",
   "dependencies": {
-    "@reux/gatsby-component-prismjs": "*"
+    "mdx-utils": "^0.0.2",
+    "prism-react-renderer": "^0.1.5"
   }
 }
