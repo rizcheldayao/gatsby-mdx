@@ -145,6 +145,7 @@ ${code}`;
   results.scopeIdentifiers = identifiers;
   // TODO: be more sophisticated about these replacements
   results.body = result.code
+    .replace("export default", "return")
     .replace("export { MDXContent as default };", "return MDXContent;")
     .replace(/\nexport /g, "\n");
 
